@@ -133,9 +133,16 @@ public class inputs
 			{
 				shots = scan.nextInt();
 				
-				if (shots < max_shot && shots > min_shot)
+				if (shots <= max_shot && shots >= min_shot)
 				{
 					val_shot = false;
+				}
+				
+				else
+				{
+					System.out.println("Número fora dos limites");
+					System.out.println();
+					scan.nextLine();
 				}
 			}
 
@@ -146,6 +153,7 @@ public class inputs
 				scan.nextLine();
 			}
 		}
+		System.out.println();
 		return shots;
 	}
 

@@ -48,6 +48,7 @@ public class main
 
 			else if (menu == 2)
 			{
+				System.out.println();
 				ManageStats.printStatsTotal(resultado,numJogo, jogadasTotal);
 				System.out.println();
 				ManageStats.printPerc(resultado, numJogo, jogadasTotal, vitoria, derrota, abandono);
