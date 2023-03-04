@@ -264,6 +264,145 @@ public class ManageTabuleiro
 		return tabuleiro;
 	}
 
+	public static char[][] criarTabuleiro2(int N, int M, char water, int navios_colocados, int navios, char ship)
+	{
+		char[][] tabuleiro = new char[N][M];
+		int tipo_navio;
+		int orientacao;
+		int[] local = new int[2];
+		int tentativa = 0;
+		
+		char possivel_local;
+		char possivel_local1;
+		char possivel_local2;
+		char possivel_local3;
+		char possivel_local4;
+		
+		// 0 - tipo S ; 1 - tipo SS ; 2 - tipo SSSS
+		// 0 - horizontal ; 1 - vertical
+		
+		for (char[] row : tabuleiro)
+		{
+			Arrays.fill(row, water);
+		}
+		
+		while ( navios_colocados < navios && tentativa <= 100 )
+		{
+			tentativa++;
+			
+			if (navios_colocados < 1)
+			{
+				tipo_navio = 0;
+			}
+			
+			else if (navios_colocados > 0 && navios_colocados < 2)
+			{
+				tipo_navio = 1;
+			}
+			
+			else if (navios_colocados > 1 && navios_colocados < 3)
+			{
+				tipo_navio = 2;
+			}
+			
+			else
+			{
+				tipo_navio = new Random().nextInt(3);
+			}
+			
+			if (tipo_navio == 0)
+			{
+				possivel_local = tabuleiro[local[0]][local[1]];
+
+				if (possivel_local == water)
+				{
+					tabuleiro[local[0]][local[1]] = ship;
+					navios_colocados++;
+				}
+			}
+				
+			else if (tipo_navio == 1)
+			{
+				orientacao = new Random().nextInt(2);
+				
+				if (orientacao == 0)
+				{
+					possivel_local1 = tabuleiro[local[0]][local[1]];
+					possivel_local2 = tabuleiro[local[0]][(local[1] + 1)];
+
+					if (possivel_local1 == water && possivel_local2 == water)
+					{
+						tabuleiro[local[0]][local[1]] = ship;
+						tabuleiro[local[0]][(local[1] + 1)] = ship;
+						navios_colocados++;
+					}
+				}
+				
+				else
+				{
+					possivel_local1 = tabuleiro[local[0]][local[1]];
+					possivel_local2 = tabuleiro[local[0]][(local[1] + 1)];
+
+					if (possivel_local1 == water && possivel_local2 == water)
+					{
+						tabuleiro[local[0]][local[1]] = ship;
+						tabuleiro[local[0]][(local[1] + 1)] = ship;
+						navios_colocados++;
+					}
+				}
+			}
+				
+			else if (tipo_navio == 2)
+			{
+				orientacao = new Random().nextInt(2);
+				
+				if (orientacao == 0)
+				{
+					possivel_local1 = tabuleiro[local[0]][local[1]];
+					possivel_local2 = tabuleiro[local[0]][(local[1] + 1)];
+					possivel_local3 = tabuleiro[local[0]][(local[1] + 2)];
+					possivel_local4 = tabuleiro[local[0]][(local[1] + 3)];
+
+					if (possivel_local1 == water && possivel_local2 == water && possivel_local3 == water
+							&& possivel_local4 == water)
+					{
+						tabuleiro[local[0]][local[1]] = ship;
+						tabuleiro[local[0]][(local[1] + 1)] = ship;
+						tabuleiro[local[0]][(local[1] + 2)] = ship;
+						tabuleiro[local[0]][(local[1] + 3)] = ship;
+						navios_colocados++;
+					}
+				}
+				
+				else
+				{
+					possivel_local1 = tabuleiro[local[0]][local[1]];
+					possivel_local2 = tabuleiro[(local[0] + 1)][local[1]];
+					possivel_local3 = tabuleiro[(local[0] + 2)][local[1]];
+					possivel_local4 = tabuleiro[(local[0] + 3)][local[1]];
+
+					if (possivel_local1 == water && possivel_local2 == water && possivel_local3 == water
+							&& possivel_local4 == water)
+					{
+						tabuleiro[local[0]][local[1]] = ship;
+						tabuleiro[(local[0] + 1)][local[1]] = ship;
+						tabuleiro[(local[0] + 2)][local[1]] = ship;
+						tabuleiro[(local[0] + 3)][local[1]] = ship;
+						navios_colocados++;
+					}
+				}
+			}
+		}
+		
+		if (tentativa == 100)
+		{
+			System.out.print("Excedeu o número máximo de tentativas de colocação. Por favor inserir novos valores iniciais");
+			tabuleiro = new char[2][2];
+		}
+		
+		return tabuleiro;
+			
+	}
 	
 	public static void printTabuleiro(char[][] tabuleiro, char water, char ship, int N, int M)
 	{
@@ -453,7 +592,7 @@ public class ManageTabuleiro
 	}
 
 	
-	public static boolean iniciarNovoJogo(boolean val_jogo, Scanner scan)
+	public static boolean iniciarNovoJogo(boolean val_interacao, Scanner scan)
 	{
 		boolean val_escolha = true;
 		int i = 0;
@@ -466,13 +605,13 @@ public class ManageTabuleiro
 			if (i == 1)
 			{
 				val_escolha = false;
-				val_jogo = true;
+				val_interacao = true;
 			}
 
 			else if (i == 2)
 			{
 				val_escolha = false;
-				val_jogo = false;
+				val_interacao = false;
 			}
 
 			else
@@ -481,10 +620,10 @@ public class ManageTabuleiro
 				val_escolha = true;
 			}
 		}
-		return val_jogo;
+		return val_interacao;
 	}
 
-	public static boolean abandonarJogo(boolean val_jogo, Scanner scan)
+	public static boolean abandonarJogo(boolean val_interacao, Scanner scan)
 	{
 		boolean val_escolha = true;
 		String i;
@@ -498,13 +637,13 @@ public class ManageTabuleiro
 			if (i.equals(""))
 			{
 				val_escolha = false;
-				val_jogo = true;
+				val_interacao = true;
 			}
 			
 			else if (i.equals("quit"))
 			{
 				val_escolha = false;
-				val_jogo = false;
+				val_interacao = false;
 			}
 		
 			else
@@ -513,8 +652,10 @@ public class ManageTabuleiro
 				System.out.println("Prima espaço para continuar a jogar ou escreva 'quit' para abandonar a partida.");
 			}
 		}
-		return val_jogo;
+		return val_interacao;
 	}
+	
+//	public static boolean tabuleiroCheck(boolean)
 
 
 }
