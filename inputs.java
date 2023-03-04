@@ -117,18 +117,26 @@ public class inputs
 		return navios;
 	}
 	
-	public static int check_shot(boolean val_shot, Scanner scan)
+	public static int check_shot(boolean val_shot, Scanner scan, int numS, int N, int M)
 	{
+		
+		int min_shot = numS;
+		int max_shot = N*M;
+		
 		System.out.println();
-		int max_shot = 0;
+		int shots = 0;
 		while (val_shot)
 		{
-			System.out.print("Número máximo de disparos: ");
+			System.out.print("Número máximo de disparos (entre " + min_shot + " e " + max_shot + "): ");
 
 			if (scan.hasNextInt())
 			{
-				max_shot = scan.nextInt();
-				val_shot = false;
+				shots = scan.nextInt();
+				
+				if (shots < max_shot && shots > min_shot)
+				{
+					val_shot = false;
+				}
 			}
 
 			else
@@ -138,7 +146,7 @@ public class inputs
 				scan.nextLine();
 			}
 		}
-		return max_shot;
+		return shots;
 	}
 
 

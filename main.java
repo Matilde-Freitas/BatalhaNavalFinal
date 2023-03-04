@@ -15,7 +15,6 @@ public class main
 		boolean val_navios = true;
 		boolean val_shot = true;
 		boolean val_interacao = true;
-		boolean val_criacao_tabuleiro = true;
 		boolean val_tabuleiro_valido = true;
 		boolean val_jogo = true;
 		
@@ -31,6 +30,7 @@ public class main
 		
 		int navios_colocados = 0;
 		int numJogo = 0;
+		int numS = 0;
 		int[] jogadasTotal = new int[100];
 
 		while (val_menu)
@@ -73,8 +73,6 @@ public class main
 					int M = inputs.check_M(val_M, scan);
 	
 					int navios = inputs.check_navios(val_navios, scan);
-	
-					int max_shot = inputs.check_shot(val_shot, scan);
 					
 					char tabuleiro[][] = new char[N][M];
 					
@@ -91,6 +89,10 @@ public class main
 						
 						if (val_tabuleiro_valido = true)
 						{
+							numS = ManageTabuleiro.contarS(tabuleiro, ship, N, M);
+							
+							int max_shot = inputs.check_shot(val_shot, scan, numS, N, M);
+							
 							ManageTabuleiro.printTabuleiro(tabuleiro, water, ship, N, M);
 		
 							int jogadas = 0;
@@ -106,7 +108,7 @@ public class main
 								tabuleiro = ManageTabuleiro.atualizarTabuleiro(tabuleiro, coordenadasJogador, resultadoShot);
 								ManageTabuleiro.printTabuleiro(tabuleiro, water, ship, N, M);
 		
-								int numS = ManageTabuleiro.contarS(tabuleiro, ship, N, M);
+								numS = ManageTabuleiro.contarS(tabuleiro, ship, N, M);
 		
 								if (numS == 0)
 								{

@@ -438,14 +438,16 @@ public class ManageTabuleiro
 			for (int col = 0; col < M; col++)
 			{
 				char posicao = tabuleiro[row][col];
-				// if (posicao == ship)
-				// {
-				// System.out.print(water + " ");
-				// }
-				// else
-				// {
-				System.out.print(posicao + "  ");
-				// }
+				
+				if (posicao == ship)
+				{
+					System.out.print(water + "  ");
+				}
+				
+				else
+				{
+					System.out.print(posicao + "  ");
+				}
 			}
 
 			System.out.println();
