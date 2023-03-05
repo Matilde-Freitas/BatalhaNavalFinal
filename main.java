@@ -72,7 +72,7 @@ public class main
 
 					int M = inputs.check_M(val_M, scan);
 
-					int navios = inputs.check_navios(val_navios, scan);
+					int navios = inputs.check_navios(val_navios, scan, N, M);
 
 					char tabuleiro[][] = new char[N][M];
 

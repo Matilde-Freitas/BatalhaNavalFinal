@@ -79,27 +79,28 @@ public class inputs
 		return M;
 	}
 	
-	public static int check_navios(boolean val_navios, Scanner scan)
+	public static int check_navios(boolean val_navios, Scanner scan, int N, int M)
 	{
 		System.out.println();
 		int navios = 0;
+		int max_navios = (N*M)/4;
 
 		while (val_navios)
 		{
-			System.out.print("Número de navios a colocar (3 ou mais): ");
+			System.out.print("Número de navios a colocar (mínimo de 3 e máximo de " + max_navios + "): ");
 
 			if (scan.hasNextInt())
 			{
 				navios = scan.nextInt();
 
-				if (navios >= 3)
+				if (navios >= 3 && navios <= max_navios)
 				{
 					val_navios = false;
 				}
 
 				else
 				{
-					System.out.println("Número insuficiente de navios");
+					System.out.println("Número de navios fora dos limites");
 					System.out.println();
 					scan.nextLine();
 				}

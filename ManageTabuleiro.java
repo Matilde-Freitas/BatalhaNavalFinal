@@ -815,7 +815,7 @@ public class ManageTabuleiro
 
 			else
 			{
-				System.out.println("Valor inválido");
+				System.out.println("Formato inválido");
 				System.out.println("Prima espaço para continuar a jogar ou escreva 'quit' para abandonar a partida.");
 			}
 		}
