@@ -24,14 +24,14 @@ public class main
 		char hit = 'X';
 		char miss = 'o';
 
-		char[] resultado = new char[100];
+		char[] resultado = new char[1000];
 		char vitoria = 'V';
 		char derrota = 'D';
 		char abandono = 'A';
 
 		int numJogo = 0;
 		int numS = 0;
-		int[] jogadasTotal = new int[100];
+		int[] jogadasTotal = new int[1000];
 
 		while (val_menu)
 		{
