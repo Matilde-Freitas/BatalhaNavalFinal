@@ -759,7 +759,7 @@ public class ManageTabuleiro
 		return numS;
 	}
 
-	public static boolean iniciarNovoJogo(boolean val_interacao, Scanner scan)
+	public static boolean iniciarNovoJogo(boolean val_jogo, Scanner scan)
 	{
 		boolean val_escolha = true;
 		int i = 0;
@@ -772,13 +772,13 @@ public class ManageTabuleiro
 			if (i == 1)
 			{
 				val_escolha = false;
-				val_interacao = true;
+				val_jogo = true;
 			}
 
 			else if (i == 2)
 			{
 				val_escolha = false;
-				val_interacao = false;
+				val_jogo = false;
 			}
 
 			else
@@ -787,10 +787,10 @@ public class ManageTabuleiro
 				val_escolha = true;
 			}
 		}
-		return val_interacao;
+		return val_jogo;
 	}
 
-	public static boolean abandonarJogo(boolean val_interacao, Scanner scan)
+	public static boolean abandonarJogo(boolean val_abandonar, Scanner scan)
 	{
 		boolean val_escolha = true;
 		String i;
@@ -804,13 +804,13 @@ public class ManageTabuleiro
 			if (i.equals(""))
 			{
 				val_escolha = false;
-				val_interacao = true;
+				val_abandonar = false;
 			}
 
 			else if (i.equals("quit"))
 			{
 				val_escolha = false;
-				val_interacao = false;
+				val_abandonar = true;
 			}
 
 			else
@@ -819,7 +819,7 @@ public class ManageTabuleiro
 				System.out.println("Prima espaço para continuar a jogar ou escreva 'quit' para abandonar a partida.");
 			}
 		}
-		return val_interacao;
+		return val_abandonar;
 	}
 
 }

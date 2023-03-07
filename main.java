@@ -14,9 +14,10 @@ public class main
 		boolean val_M = true;
 		boolean val_navios = true;
 		boolean val_shot = true;
-		boolean val_interacao = true;
+		boolean val_novoTabuleiro = true;
 		boolean val_tabuleiro_valido = true;
 		boolean val_jogo = true;
+		boolean val_abandonar = false;
 
 		char water = '.';
 		char ship = 'S';
@@ -64,7 +65,7 @@ public class main
 				while (val_jogo)
 				{
 					val_tabuleiro_valido = true;
-					val_interacao = true;
+					val_novoTabuleiro = true;
 
 					System.out.println("Defina as dimensões do tabuleiro.");
 
@@ -76,14 +77,14 @@ public class main
 
 					char tabuleiro[][] = new char[N][M];
 
-					while (val_interacao)
+					while (val_novoTabuleiro)
 					{
 						tabuleiro = ManageTabuleiro.criarTabuleiro2(N, M, water, navios, ship);
 
 						if (tabuleiro.length < 10)
 						{
 							val_tabuleiro_valido = false;
-							val_interacao = false;
+							val_novoTabuleiro = false;
 						}
 
 						if (val_tabuleiro_valido == true)
@@ -117,11 +118,8 @@ public class main
 									resultado[numJogo] = vitoria;
 									jogadasTotal[numJogo] = jogadas;
 
-									val_interacao = ManageTabuleiro.iniciarNovoJogo(val_interacao, scan);
-									if (val_interacao == false)
-									{
-										val_jogo = false;
-									}
+									val_jogo = ManageTabuleiro.iniciarNovoJogo(val_jogo, scan);
+									val_novoTabuleiro = false;
 									i = max_shot;
 
 								}
@@ -132,27 +130,21 @@ public class main
 									resultado[numJogo] = derrota;
 									jogadasTotal[numJogo] = jogadas;
 
-									val_interacao = ManageTabuleiro.iniciarNovoJogo(val_interacao, scan);
-									if (val_interacao == false)
-									{
-										val_jogo = false;
-									}
+									val_jogo = ManageTabuleiro.iniciarNovoJogo(val_jogo, scan);
+									val_novoTabuleiro = false;
 									i = max_shot;
 
 								}
 
 								if (i < max_shot)
 								{
-									val_interacao = ManageTabuleiro.abandonarJogo(val_interacao, scan);
-									if (val_interacao == false)
+									val_abandonar = ManageTabuleiro.abandonarJogo(val_abandonar, scan);
+									if (val_abandonar == true)
 									{
 										resultado[numJogo] = abandono;
 										jogadasTotal[numJogo] = jogadas;
-										val_interacao = ManageTabuleiro.iniciarNovoJogo(val_interacao, scan);
-										if (val_interacao == false)
-										{
-											val_jogo = false;
-										}
+										val_jogo = ManageTabuleiro.iniciarNovoJogo(val_jogo, scan);
+										val_novoTabuleiro = false;
 										i = max_shot;
 									}
 								}
