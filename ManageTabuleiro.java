@@ -607,21 +607,63 @@ public class ManageTabuleiro
 			{
 				char posicao = tabuleiro[row][col];
 
-				// if (posicao == ship)
-				// {
-				// System.out.print(water + " ");
-				// }
-				//
-				// else
-				// {
+				if (posicao == ship)
+				{
+				System.out.print(water + "  ");
+				}
+				
+				else
+				{
 				System.out.print(posicao + "  ");
-				// }
+				}
 			}
 
 			System.out.println();
 		}
 	}
 
+	public static void printTabuleiroFinal(char[][] tabuleiro, char water, char ship, int N, int M)
+	{
+		System.out.print("    ");
+
+		for (int i = 0; i < M; i++)
+		{
+
+			if (i < 9)
+			{
+				System.out.print(i + 1 + "  ");
+			}
+			else
+			{
+				System.out.print(i + 1 + " ");
+			}
+		}
+
+		System.out.println();
+
+		for (int row = 0; row < N; row++)
+		{
+			if (row < 9)
+			{
+				System.out.print(row + 1 + "   ");
+			}
+
+			else
+			{
+				System.out.print(row + 1 + "  ");
+			}
+
+			for (int col = 0; col < M; col++)
+			{
+				char posicao = tabuleiro[row][col];
+
+				System.out.print(posicao + "  ");
+			}
+
+			System.out.println();
+		}
+	}
+	
 	public static int[] inserirCoordenadas(int N, int M, Scanner scan)
 	{
 		int row = 0;
@@ -760,20 +802,22 @@ public class ManageTabuleiro
 	public static boolean iniciarNovoJogo(boolean val_jogo, Scanner scan)
 	{
 		boolean val_escolha = true;
-		int i = 0;
+		String i;
+		
+		System.out.println("Insira [1] para jogar novamente e [2] para voltar ao menu principal.");
 
 		while (val_escolha)
 		{
-			System.out.println("Insira [1] para jogar novamente e [2] para voltar ao menu principal.");
-			i = scan.nextInt();
-
-			if (i == 1)
+			i = scan.nextLine();
+			i = i.replaceAll("\\[", "").replaceAll("\\]","");
+	
+			if (i.equals("1"))
 			{
 				val_escolha = false;
 				val_jogo = true;
 			}
 
-			else if (i == 2)
+			else if (i.equals("2"))
 			{
 				val_escolha = false;
 				val_jogo = false;
@@ -782,6 +826,7 @@ public class ManageTabuleiro
 			else
 			{
 				System.out.println("Valor inválido");
+				System.out.println("Insira [1] para jogar novamente e [2] para voltar ao menu principal.");
 				val_escolha = true;
 			}
 		}
@@ -798,6 +843,8 @@ public class ManageTabuleiro
 		while (val_escolha)
 		{
 			i = scan.nextLine();
+			i = i.toLowerCase();
+			i = i.replaceAll("[']","");
 
 			if (i.equals(""))
 			{

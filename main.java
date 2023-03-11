@@ -38,6 +38,7 @@ public class main
 			System.out.println("Insira [1] para jogar uma nova partida."
 					+ "\nInsira [2] para ver o histórico de partidas." + "\nInsira [3] para sair.");
 			String menu = scan.nextLine();
+			menu = menu.replaceAll("\\[", "").replaceAll("\\]","");
 
 			if (menu.equals("3"))
 			{
@@ -120,6 +121,7 @@ public class main
 									System.out.println("Ganhou o jogo!");
 									resultado[numJogo] = vitoria;
 									jogadasTotal[numJogo] = jogadas;
+									ManageTabuleiro.printTabuleiroFinal(tabuleiro, water, ship, N, M);
 
 									val_jogo = ManageTabuleiro.iniciarNovoJogo(val_jogo, scan);
 									val_novoTabuleiro = false;
@@ -132,6 +134,7 @@ public class main
 									System.out.println("Perdeu o jogo");
 									resultado[numJogo] = derrota;
 									jogadasTotal[numJogo] = jogadas;
+									ManageTabuleiro.printTabuleiroFinal(tabuleiro, water, ship, N, M);
 
 									val_jogo = ManageTabuleiro.iniciarNovoJogo(val_jogo, scan);
 									val_novoTabuleiro = false;
@@ -146,6 +149,7 @@ public class main
 									{
 										resultado[numJogo] = abandono;
 										jogadasTotal[numJogo] = jogadas;
+										ManageTabuleiro.printTabuleiroFinal(tabuleiro, water, ship, N, M);
 										val_jogo = ManageTabuleiro.iniciarNovoJogo(val_jogo, scan);
 										val_novoTabuleiro = false;
 										i = max_shot;
@@ -157,7 +161,6 @@ public class main
 				}
 
 				val_menu = true;
-				scan.nextLine();
 			}
 
 			else
