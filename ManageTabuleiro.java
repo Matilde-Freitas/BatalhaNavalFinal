@@ -83,8 +83,6 @@ public class ManageTabuleiro
 		int[] coordenadas_navio = new int[2];
 		int c1 = 0;
 		int c2 = 0;
-		boolean val_coordenada = true;
-
 
 		if (tipo_navio == 0)
 		{

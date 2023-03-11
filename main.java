@@ -37,16 +37,15 @@ public class main
 		{
 			System.out.println("Insira [1] para jogar uma nova partida."
 					+ "\nInsira [2] para ver o histórico de partidas." + "\nInsira [3] para sair.");
-			int menu = scan.nextInt();
-			scan.nextLine();
+			String menu = scan.nextLine();
 
-			if (menu == 3)
+			if (menu.equals("3"))
 			{
 				System.out.println("GAME OVER");
 				val_menu = false;
 			}
 
-			else if (menu == 2)
+			else if (menu.equals("2"))
 			{
 				System.out.println();
 				ManageStats.printStatsTotal(resultado, numJogo, jogadasTotal);
@@ -58,9 +57,10 @@ public class main
 				val_menu = true;
 			}
 
-			else if (menu == 1)
+			else if (menu.equals("1"))
 			{
 				System.out.println("GAME START");
+				val_jogo = true;
 
 				while (val_jogo)
 				{
@@ -110,6 +110,9 @@ public class main
 										resultadoShot);
 								ManageTabuleiro.printTabuleiro(tabuleiro, water, ship, N, M);
 
+								System.out.println("Número de tiros restantes: " + (max_shot - jogadas));
+								System.out.println();
+
 								numS = ManageTabuleiro.contarS(tabuleiro, ship, N, M);
 
 								if (numS == 0)
@@ -154,6 +157,7 @@ public class main
 				}
 
 				val_menu = true;
+				scan.nextLine();
 			}
 
 			else

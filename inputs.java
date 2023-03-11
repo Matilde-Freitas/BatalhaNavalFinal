@@ -41,7 +41,7 @@ public class inputs
 		}
 		return N;
 	}
-	
+
 	public static int check_M(boolean val_M, Scanner scan)
 	{
 		System.out.println();
@@ -78,12 +78,12 @@ public class inputs
 		}
 		return M;
 	}
-	
+
 	public static int check_navios(boolean val_navios, Scanner scan, int N, int M)
 	{
 		System.out.println();
 		int navios = 0;
-		int max_navios = (N*M)/4;
+		int max_navios = (N * M) / 4;
 
 		while (val_navios)
 		{
@@ -117,13 +117,13 @@ public class inputs
 
 		return navios;
 	}
-	
+
 	public static int check_shot(boolean val_shot, Scanner scan, int numS, int N, int M)
 	{
-		
+
 		int min_shot = numS;
-		int max_shot = N*M;
-		
+		int max_shot = N * M;
+
 		System.out.println();
 		int shots = 0;
 		while (val_shot)
@@ -133,12 +133,12 @@ public class inputs
 			if (scan.hasNextInt())
 			{
 				shots = scan.nextInt();
-				
+
 				if (shots <= max_shot && shots >= min_shot)
 				{
 					val_shot = false;
 				}
-				
+
 				else
 				{
 					System.out.println("Número fora dos limites");
@@ -157,6 +157,5 @@ public class inputs
 		System.out.println();
 		return shots;
 	}
-
 
 }
